@@ -329,6 +329,17 @@ lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
+temp = "Кольцо холода";
+images[temp] = "http://dcdn.heroeswm.ru/i/artifacts/coldring_b.jpg";
+urls[temp]    = "cat=ring&sort=0&art_type=coldring_n";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 200000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
 temp = "Рунный камень";
 images[temp] = "http://dcdn1.heroeswm.ru/i/artifacts/events/runkam_b.jpg";
 urls[temp]    = "cat=other&sort=0&art_type=runkam";
