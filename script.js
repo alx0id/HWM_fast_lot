@@ -329,6 +329,28 @@ lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
+temp = "Кинжал налётчика";
+images[temp] = "http://dcdn1.heroeswm.ru/i/artifacts/tm_knife_s.jpg";
+urls[temp]    = "cat=thief&sort=0&art_type=tm_knife";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 40000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
+temp = "Амулет налётчика";
+images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/tm_amulet_s.jpg";
+urls[temp]    = "cat=thief&sort=0&art_type=tm_amulet";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 40000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
 temp = "Кольцо холода";
 images[temp] = "http://dcdn.heroeswm.ru/i/artifacts/coldring_b.jpg";
 urls[temp]    = "cat=ring&sort=0&art_type=coldring_n";
