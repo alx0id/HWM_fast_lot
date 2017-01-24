@@ -62,7 +62,8 @@ function setMarketDivInner(response, item_to_fill) {
         curPrice,
         strDur,
         minDur,
-        elem_price;
+        elem_price,
+        colouredTD;
     // !reg
  
     elem_tr = doc.evaluate("//TBODY/TR[1][@bgcolor='#eeeeee']", doc, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -89,6 +90,8 @@ function setMarketDivInner(response, item_to_fill) {
         row.count = tr.firstChild.childNodes[1].firstChild.firstChild.childNodes[1].childNodes[4].innerText;
         row.price = tr.childNodes[2].firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.childNodes[1].innerText;
         row.price = row.price.replace(/\,/ig, '');
+
+        row.myLot = tr.innerText.indexOf('AlX0id') > -1;
 
         strDur = tr.firstChild.childNodes[1].firstChild.firstChild.childNodes[1].childNodes[4].data;
         if(strDur)
@@ -123,11 +126,20 @@ function setMarketDivInner(response, item_to_fill) {
     table_innerHTML = "<tbody></tbody>";
     for (i = 0; i < arr.length; i++) {
 
-        table_innerHTML += "<tr>";
-        table_innerHTML += "<td><b>" + arr[i].price + "</b></td>" +
-            "<td>" + arr[i].durability + "</td>" +
+        if(arr[i].myLot)
+        {
+           table_innerHTML += "<tr bgcolor=\"#0000FF\" color='white'>";
+           colouredTD = "<td style='color: white;'>";
+        }
+        else
+        {
+           table_innerHTML += "<tr>";
+           colouredTD = "<td>";
+        }
+        table_innerHTML += colouredTD + "<b>" + arr[i].price + "</b></td>" +
+            colouredTD + arr[i].durability + "</td>" +
             "<td bgcolor=\"#CCCCFF\">" + arr[i].av_price + "</td>" +
-            "<td>" + arr[i].count + "</td>";
+            colouredTD + arr[i].count + "</td>";
         table_innerHTML += "</tr>";
     }
     table_el.innerHTML = table_innerHTML;
