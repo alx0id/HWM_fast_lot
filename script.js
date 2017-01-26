@@ -453,7 +453,7 @@ fastLots.push(lot);
 
 temp = "Орден Грифона";
 images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/events/order_griffin_b.jpg";
-urls[temp]    = "cat=necklace&sort=0&art_type=ord_griffin";
+urls[temp]    = "cat=necklace&sort=0&art_type=order_griffin";
 lot = {};
 lot.value = temp;
 lot.amount = 1;
