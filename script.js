@@ -451,6 +451,17 @@ lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
+temp = "Орден Грифона";
+images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/events/order_griffin_b.jpg";
+urls[temp]    = "cat=necklace&sort=0&art_type=ord_griffin";
+lot = {};
+lot.value = temp;
+lot.amount = 1;
+lot.price = 50000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
 temp = "Орден Света";
 images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/events/order_light_b.jpg";
 urls[temp]    = "cat=necklace&sort=0&art_type=ord_light";
