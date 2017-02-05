@@ -341,6 +341,61 @@ lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
+temp = "Кинжал пламени";
+images[temp] = "http://dcdn2.heroeswm.ru/i/artifacts/super_dagger_b.jpg";
+urls[temp]    = "cat=weapon&sort=0&art_type=super_dagger";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 210000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
+temp = "Кольцо холода";
+images[temp] = "http://dcdn.heroeswm.ru/i/artifacts/coldring_b.jpg";
+urls[temp]    = "cat=ring&sort=0&art_type=coldring_n";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 200000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
+temp = "Клевер фортуны";
+images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/clover_amul_s.jpg";
+urls[temp]    = "cat=necklace&sort=0&art_type=clover_amul";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 90000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
+temp = "Меч холода";
+images[temp] = "http://dcdn.heroeswm.ru/i/artifacts/cold_sword2014_s.jpg";
+urls[temp]    = "cat=weapon&sort=0&art_type=cold_sword2014";
+lot = {};
+lot.value = temp;
+lot.amount = 3;
+lot.price = 70000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
+temp = "Плащ солнца";
+images[temp] = "http://dcdn1.heroeswm.ru/i/artifacts/finecl_s.jpg";
+urls[temp]    = "cat=cloack&sort=0&art_type=finecl";
+lot = {};
+lot.value = temp;
+lot.amount = 1;
+lot.price = 60000;
+lot.duration = 0; // 3 часа
+lot.quantity = getQuantity(lot.value, lot.amount);
+fastLots.push(lot);
+
 temp = "Кинжал налётчика";
 images[temp] = "http://dcdn1.heroeswm.ru/i/artifacts/tm_knife_s.jpg";
 urls[temp]    = "cat=thief&sort=0&art_type=tm_knife";
@@ -374,17 +429,6 @@ lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
-temp = "Кольцо холода";
-images[temp] = "http://dcdn.heroeswm.ru/i/artifacts/coldring_b.jpg";
-urls[temp]    = "cat=ring&sort=0&art_type=coldring_n";
-lot = {};
-lot.value = temp;
-lot.amount = 3;
-lot.price = 200000;
-lot.duration = 0; // 3 часа
-lot.quantity = getQuantity(lot.value, lot.amount);
-fastLots.push(lot);
-
 temp = "Рунный камень";
 images[temp] = "http://dcdn1.heroeswm.ru/i/artifacts/events/runkam_b.jpg";
 urls[temp]    = "cat=other&sort=0&art_type=runkam";
@@ -403,28 +447,6 @@ lot = {};
 lot.value = temp;
 lot.amount = 3;
 lot.price = 25000;
-lot.duration = 0; // 3 часа
-lot.quantity = getQuantity(lot.value, lot.amount);
-fastLots.push(lot);
-
-temp = "Клевер фортуны";
-images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/clover_amul_s.jpg";
-urls[temp]    = "cat=necklace&sort=0&art_type=clover_amul";
-lot = {};
-lot.value = temp;
-lot.amount = 3;
-lot.price = 90000;
-lot.duration = 0; // 3 часа
-lot.quantity = getQuantity(lot.value, lot.amount);
-fastLots.push(lot);
-
-temp = "Меч холода";
-images[temp] = "http://dcdn.heroeswm.ru/i/artifacts/cold_sword2014_s.jpg";
-urls[temp]    = "cat=weapon&sort=0&art_type=cold_sword2014";
-lot = {};
-lot.value = temp;
-lot.amount = 3;
-lot.price = 70000;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
@@ -491,17 +513,6 @@ lot = {};
 lot.value = temp;
 lot.amount = 3;
 lot.price = 3259;
-lot.duration = 0; // 3 часа
-lot.quantity = getQuantity(lot.value, lot.amount);
-fastLots.push(lot);
-
-temp = "Плащ солнца";
-images[temp] = "http://dcdn1.heroeswm.ru/i/artifacts/finecl_s.jpg";
-urls[temp]    = "cat=cloack&sort=0&art_type=finecl";
-lot = {};
-lot.value = temp;
-lot.amount = 1;
-lot.price = 60000;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
