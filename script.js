@@ -514,6 +514,7 @@ lot.value = temp;
 lot.amount = 3;
 lot.price = 25000;
 lot.duration = 0; // 3 часа
+lot.repair = 12000;
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
