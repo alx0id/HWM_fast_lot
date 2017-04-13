@@ -52,7 +52,7 @@ function setMarketDivInner(response, item_to_fill) {
         arr,
         check,
         market_div,
-        image_el, 
+        image_el,
         image_a,
         table_innerHTML,
         table_el,
@@ -62,7 +62,9 @@ function setMarketDivInner(response, item_to_fill) {
         curPrice,
         strDur,
         minDur,
+        maxDur,
         elem_price,
+        outPrice,
         colouredTD;
     // !reg
  
@@ -94,13 +96,16 @@ function setMarketDivInner(response, item_to_fill) {
         row.myLot = tr.innerText.indexOf('AlX0id') > -1;
 
         strDur = tr.firstChild.childNodes[1].firstChild.firstChild.childNodes[1].childNodes[4].data;
-        if(strDur)
-        {
-         row.durability = strDur.replace(/Прочность: /, "");
-         minDur = parseInt(row.durability.replace(/\/.*/));
+        if (strDur) {
+            row.durability = strDur.replace(/Прочность: /, "");
+            minDur = parseInt(row.durability.replace(/\/.*/, ''));
+            maxDur = parseInt(row.durability.replace(/.*\//, ''));
         }
 
         row.av_price = Math.floor(row.price / minDur);
+        if (item_to_fill.repair) {
+            row.optislom = calc(parseInt(row.price), minDur, maxDur, item_to_fill.repair);
+        }
 
         if (first_price === 0) {
             first_price = row.price;
@@ -126,19 +131,19 @@ function setMarketDivInner(response, item_to_fill) {
     table_innerHTML = "<tbody></tbody>";
     for (i = 0; i < arr.length; i++) {
 
-        if(arr[i].myLot)
-        {
-           table_innerHTML += "<tr bgcolor=\"#0000FF\" color='white'>";
-           colouredTD = "<td style='color: white;'>";
+        if (arr[i].myLot) {
+            table_innerHTML += "<tr bgcolor=\"#0000FF\" color='white'>";
+            colouredTD = "<td style='color: white;'>";
+        } else {
+            table_innerHTML += "<tr>";
+            colouredTD = "<td>";
         }
-        else
-        {
-           table_innerHTML += "<tr>";
-           colouredTD = "<td>";
-        }
+        
+        outPrice = arr[i].optislom ? arr[i].optislom.optimalPrice : arr[i].av_price;
+        
         table_innerHTML += colouredTD + "<b>" + arr[i].price + "</b></td>" +
             colouredTD + arr[i].durability + "</td>" +
-            "<td bgcolor=\"#CCCCFF\">" + arr[i].av_price + "</td>" +
+            "<td bgcolor=\"#CCCCFF\">" + outPrice + "</td>" +
             colouredTD + arr[i].count + "</td>";
         table_innerHTML += "</tr>";
     }
@@ -227,6 +232,7 @@ function appendPriceDiv(item_to_fill) {
 }
 
 function set_selected_lot(item_to_fill) {
+    "use strict";
     el_label = document.getElementById(item_to_fill.value);
     if (el_label) {
         el_label.firstChild.className = "selected_lot";
@@ -329,6 +335,59 @@ function addFastLot(fastLot) {
     }
 }
 
+function calc(price, currentDurability, maxDurability, repairPrice) {
+    
+    "use strict";
+    var currentMaxDurability, totalCost = 0, totalBattles = 0, stepNum = 0, optimalPrice = 999999, optimalCurrentDurability, optimalMaxDurability, optimalBattlesCount, res;
+       
+    res = {};
+    res.optimalPrice                = 0;
+    res.optimalCurrentDurability    = 0;
+    res.optimalMaxDurability        = 0;
+    res.optimalBattlesCount         = 0;
+    
+    currentMaxDurability = maxDurability;
+    
+    totalCost += price;
+    
+    totalBattles += currentDurability;
+    
+    optimalCurrentDurability    = 0;
+    optimalMaxDurability        = currentMaxDurability;
+    optimalBattlesCount         = totalBattles;
+    
+    if (totalBattles > 0) {
+        optimalPrice = Math.round(totalCost / totalBattles);
+    }
+    
+    while (currentMaxDurability > 0) {
+        
+        totalCost += repairPrice;
+
+        currentDurability   = Math.floor(currentMaxDurability * 0.9);
+        totalBattles        += currentDurability;
+        currentMaxDurability--;
+        
+        if (optimalPrice >= Math.round(totalCost / totalBattles)) {
+            optimalPrice            = Math.round(totalCost / totalBattles);
+            optimalBattlesCount     = totalBattles;
+            optimalMaxDurability    = currentMaxDurability;
+        }
+        
+        stepNum++;
+        
+    }
+    
+    res.optimalPrice                = optimalPrice;
+    res.optimalCurrentDurability    = optimalCurrentDurability;
+    res.optimalMaxDurability        = optimalMaxDurability;
+    res.optimalBattlesCount         = optimalBattlesCount;
+    
+    return res;
+    
+}
+
+
 // Арты @reg
 temp = "Лук света";
 images[temp] = "http://dcdn3.heroeswm.ru/i/artifacts/lbow_s.jpg";
@@ -337,6 +396,7 @@ lot = {};
 lot.value = temp;
 lot.amount = 3;
 lot.price = 70000;
+lot.repair = 10100;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
@@ -348,6 +408,7 @@ lot = {};
 lot.value = temp;
 lot.amount = 3;
 lot.price = 210000;
+lot.repair = 10400;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
@@ -360,6 +421,7 @@ lot.value = temp;
 lot.amount = 3;
 lot.price = 200000;
 lot.duration = 0; // 3 часа
+lot.repair = 6400;
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
@@ -370,6 +432,7 @@ lot = {};
 lot.value = temp;
 lot.amount = 3;
 lot.price = 90000;
+lot.repair = 11000;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
@@ -381,6 +444,7 @@ lot = {};
 lot.value = temp;
 lot.amount = 3;
 lot.price = 70000;
+lot.repair = 17600;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
@@ -392,6 +456,7 @@ lot = {};
 lot.value = temp;
 lot.amount = 1;
 lot.price = 60000;
+lot.repair = 10000;
 lot.duration = 0; // 3 часа
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
@@ -426,6 +491,7 @@ lot.value = temp;
 lot.amount = 3;
 lot.price = 7000;
 lot.duration = 0; // 3 часа
+lot.repair = 2400;
 lot.quantity = getQuantity(lot.value, lot.amount);
 fastLots.push(lot);
 
@@ -746,6 +812,5 @@ elem_form = getUniqueElementByXPath("//form[@name='f']");
 for (i = 0; i < fastLots.length; i++) {
 	addFastLot(fastLots[i]);
 }
-
 
 
